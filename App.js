@@ -10,7 +10,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-
+import {Navigator} from 'react-native-deprecated-custom-components';
+import Boy from './Boy'
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -31,7 +32,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <TabNavigator>
+        {/*      <TabNavigator>
           <TabNavigator.Item
             selected={this.state.selectedTab === 'tb_popular'}
             title="最热"
@@ -69,7 +70,17 @@ export default class App extends Component<Props> {
             onPress={() => this.setState({selectedTab: 'tb_my'})}>
             <View style={styles.page1}></View>
           </TabNavigator.Item>
-        </TabNavigator>
+        </TabNavigator>*/}
+        <Navigator
+          initialRoute={{
+            component:Boy
+          }}
+          renderScene={(route, navigator) => {
+            let Component = route.component; // 从路由中取出组件
+            return <Component navigator={navigator} {...route.params}/>; // 返回组件
+          }}
+          style={{padding: 100}}
+        />
       </View>
     );
   }
@@ -88,8 +99,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'yellow'
   },
-  image:{
-    height:22,
-    width:22
+  image: {
+    height: 22,
+    width: 22
   }
 });
