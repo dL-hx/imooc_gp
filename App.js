@@ -79,7 +79,7 @@ export default class App extends Component<Props> {
             let Component = route.component; // 从路由中取出组件
             return <Component navigator={navigator} {...route.params}/>; // 返回组件
           }}
-          style={{padding: 100}}
+          // style={{padding: 1}}
         />
       </View>
     );
